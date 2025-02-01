@@ -1,0 +1,11 @@
+controller:
+  service:
+    type: LoadBalancer
+    annotations:
+      service.beta.kubernetes.io/aws-load-balancer-type: "nlb" # Use Network Load Balancer
+  metrics:
+    enabled: true
+  replicaCount: 2
+
+defaultBackend:
+  enabled: true

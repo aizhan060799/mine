@@ -50,6 +50,7 @@ jobs:
            -backend-config="region=us-east-1" \
            -backend-config="dynamodb_table=terraform-lock"
 
+
       # Checks that all Terraform configuration files adhere to a canonical format
       - name: Terraform Format
         run: terraform fmt -check

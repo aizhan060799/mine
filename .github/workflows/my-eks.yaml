@@ -37,20 +37,23 @@ jobs:
         uses: aws-actions/configure-aws-credentials@v4
         with:
           role-to-assume: ${{ vars.IAM_ROLE }}
-          role-session-name: GitHubActionsRoleSession
+          role-session-name: project
           aws-region: ${{ env.AWS_REGION }}
 
       # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
       - name: Terraform Init
         run: |
           AWS_ACCOUNT_ID=$(aws sts get-caller-identity --query 'Account' --output text)
-          terraform init
+          terraform init -backend-config="bucket=my-aizhanyl" -backend-config="key=${GITHUB_REF#refs/heads/}.tfstate" -backend-config="region=us-east-1" -backend-config="dynamodb_table=terraform-lock"
 
+      # Terraform Format
       - name: Terraform Format
         run: terraform fmt -check
 
+      # Terraform Plan
       - name: Terraform Plan
-        run: terraform plan -input=false  -var="createdFromMain=${{ env.createdFromMain }}"
+        run: terraform plan -input=false
 
+      # Terraform Apply
       - name: Terraform Apply
-        run: terraform apply -auto-approve -input=false -var="createdFromMain=${{ env.createdFromMain }}"
+        run: terraform apply -auto-approve -input=false

@@ -38,8 +38,11 @@ variable "max_size" {
 }
 
 variable "cluster_addons" {
-  description = "List of EKS add-ons to install"
-  type        = set(string)
+  type    = map(string)
+  default = {
+    "vpc-cni"            = "latest",
+    "aws-ebs-csi-driver" = "latest"
+  }
 }
 
 # variable "admin" {

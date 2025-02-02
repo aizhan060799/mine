@@ -6,11 +6,6 @@ module "eks" {
 
   #private_subnets         = 
   instance_types = ["t2.medium", "t3.medium"]
-  cluster_addons = [
-    "vpc-cni",
-    "aws-ebs-csi-driver"
-  ]
-
 }
 
 resource "helm_release" "nginx_ingress" {

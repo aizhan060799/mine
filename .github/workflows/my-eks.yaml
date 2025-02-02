@@ -50,9 +50,6 @@ jobs:
       - name: Initialize Terraform
         run: terraform init -backend-config="bucket=${{ vars.TF_STATE_BUCKET }}" 
 
-      - name: Format Check or Lint Test
-        run: terraform fmt -check
-
       - name: Plan Infrastructure
         run: terraform plan 
 

@@ -42,17 +42,17 @@ variable "cluster_addons" {
   type        = set(string)
 }
 
-variable "admin" {
-  description = "AWSReserved_Administrator"
-  type        = string
-}
+# variable "admin" {
+#   description = "AWSReserved_Administrator"
+#   type        = string
+# }
 
-variable "github-runner-cicd" {
-  description = "GitHubActionsCICDrole"
-  type        = string
-}
+# variable "github-runner-cicd" {
+#   description = "GitHubActionsCICDrole"
+#   type        = string
+# }
 
-variable "github-runner-terraform" {
-  description = "GitHubActionsTerraformIAMrole"
-  type        = string
-}
+# variable "github-runner-terraform" {
+#   description = "GitHubActionsTerraformIAMrole"
+#   type        = string
+# }

@@ -10,9 +10,6 @@ module "eks" {
     "vpc-cni",
     "aws-ebs-csi-driver"
   ]
-  admin                   = "arn:aws:iam::975050202573:user/admin"
-  github-runner-cicd      = "arn:aws:iam::975050202573:role/project"
-  github-runner-terraform = "arn:aws:iam::975050202573:user/admin"
 
 }
 

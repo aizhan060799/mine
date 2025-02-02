@@ -11,9 +11,9 @@ permissions:
   contents: read  # This is required for actions/checkout
 env:
   AWS_REGION: "us-east-1"
-  # ENVIRONMENT_STAGE: ${{ (github.ref == 'refs/heads/main' && 'production') || (github.ref == 'refs/heads/staging' && 'staging') || 'dev' }}
-  # since production and staging are not ready, deploy only to dev for now
   ENVIRONMENT_STAGE: "dev"
+  TF_STATE_BUCKET: ${{ vars.TF_STATE_BUCKET }}
+  IAM_ROLE: ${{ vars.IAM_ROLE }}
   createdFromMain: ${{ github.ref == 'refs/heads/main' }}
 
 jobs:
@@ -39,6 +39,10 @@ jobs:
           role-to-assume: ${{ vars.IAM_ROLE }}
           role-session-name: project
           aws-region: ${{ env.AWS_REGION }}
+
+      - name: Check Terraform version
+        run: terraform -v
+
 
       # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
       - name: Initialize Terraform
